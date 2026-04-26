@@ -1,0 +1,16 @@
+.git
+.github
+.vs
+bin
+obj
+**/bin
+**/obj
+TestResults
+**/TestResults
+*.user
+*.suo
+*.rsuser
+*.nupkg
+Dockerfile*
+README.md
+LICENSE.txt
