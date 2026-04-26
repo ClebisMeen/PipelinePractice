@@ -1,5 +1,7 @@
 <Solution>
+  <Project Path="PipelinePractice.IntegrationTests/PipelinePractice.IntegrationTests.csproj" />
   <Project Path="PipelinePractice.Models/PipelinePractice.Models.csproj" />
   <Project Path="PipelinePractice.Services/PipelinePractice.Services.csproj" />
+  <Project Path="PipelinePractice.UnitedTests/PipelinePractice.UnitedTests.csproj" />
   <Project Path="PipelinePractice/PipelinePractice.csproj" />
 </Solution>
