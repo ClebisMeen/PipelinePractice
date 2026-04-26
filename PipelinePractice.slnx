@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PipelinePractice.Models/PipelinePractice.Models.csproj" />
+  <Project Path="PipelinePractice.Services/PipelinePractice.Services.csproj" />
+  <Project Path="PipelinePractice/PipelinePractice.csproj" />
+</Solution>
