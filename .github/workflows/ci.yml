@@ -47,7 +47,9 @@ jobs:
   docker-push-ecr:
     name: Push Docker Image to AWS ECR
     runs-on: ubuntu-latest
-    needs: build-and-test
+    
+    # Depende do job anterior
+    needs: docker-build
 
     steps:
       - name: Checkout repository
@@ -67,13 +69,19 @@ jobs:
         run: |
           docker build -t pipeline-practice-api:latest .
 
-      - name: Tag Docker image
+      - name: Create Tags Docker images
         run: |
-          docker tag pipeline-practice-api:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline-practice-api:latest
+          IMAGE=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline-practice-api
 
-      - name: Push Docker image to ECR
+          docker tag pipeline-practice-api:latest $IMAGE:${{ github.sha }}
+          docker tag pipeline-practice-api:latest $IMAGE:latest          
+
+      - name: Push Docker images to ECR with tags
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline-practice-api:latest        
+          IMAGE=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline-practice-api
+
+          docker push $IMAGE:${{ github.sha }}
+          docker push $IMAGE:latest               
 
   # deploy:
   #   name: Deploy AWS
